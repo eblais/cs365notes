@@ -1,25 +1,24 @@
 # Configurations
-title:            Jekyll Gitbook
-longtitle:        Jekyll Gitbook
-author:           HE Tao
-email:            sighingnow@gmail.com
+title:            CS 365
+longtitle:        CS 365 (Models of Computation)
+author:           Eric Blais
 description: >
-  Build Jekyll site with the GitBook style.
+  Lecture notes for CS 365 Models of Computation (W24)
 
-version:          1.0
+version:          0.1
 gitbook_version:  3.2.3
 
-url:              'https://sighingnow.github.io'
-baseurl:          '/jekyll-gitbook'
+#url:              'https://cs.uwaterloo.ca/~eblais/cs365/w24/'
+baseurl:          ''
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
-remote_theme: sighingnow/jekyll-gitbook
+# remote_theme: sighingnow/jekyll-gitbook
 
 toc:
   enabled: true
   h_min: 1
-  h_max: 3
+  h_max: 2
 
 # customize the link favicon in header, will be {{site.baseurl}}/{{site.favicon_path}}
 favicon_path:     /assets/gitbook/images/favicon.ico
