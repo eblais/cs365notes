@@ -118,5 +118,5 @@ From there, we can easily complete the proof of the Cook-Levin theorem that $$\t
 
 ---
 
-_Eric Blais &copy;2023 &mdash; Last edited on Dec. 22, 2023_
+_Eric Blais &copy;2023 &mdash; Last edited on Jan. 2, 2024_
 
