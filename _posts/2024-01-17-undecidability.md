@@ -1,7 +1,6 @@
 ---
 title: 4. Undecidability
 author: Eric Blais
-category: Computability
 layout: post
 ---
 

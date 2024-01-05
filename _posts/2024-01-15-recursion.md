@@ -1,8 +1,8 @@
 ---
-title: 3. Recursion Theorem
-author: Eric Blais
-category: Computability
-layout: post
+  title: 3. Recursion Theorem
+  author: Eric Blais
+  layout: post
+  cover: /assets/images/recursion.png
 ---
 
 Here's a fun puzzle: 
@@ -10,8 +10,12 @@ Here's a fun puzzle:
 _Can you design a Turing machine $$Q$$ that prints out its own encoding $$\left< Q \right>$$ on the tape and then halts?_
 
 A program that prints out its own source code is known as a _Quine_.
-This challenge asks you to design a Quine with Turing machines.
-We will see that this is indeed possible with the help of the _Recursion Theorem_.
+Here's an example of a Quine written in Python:
+
+    s = 's = %r\nprint(s %% s)' 
+    print(s % s)
+
+We will see that it is also possible to design Quines with Turing machines with the help of the _Recursion Theorem_.
 And we will see that the Recursion Theorem is also a powerful tool in establishing the limitations of Turing machines.
 
 

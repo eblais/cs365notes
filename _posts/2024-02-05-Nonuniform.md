@@ -1,7 +1,6 @@
 ---
 title: 9. Non-Uniform Computation
 author: Eric Blais
-category: Time 
 layout: post
 ---
 
