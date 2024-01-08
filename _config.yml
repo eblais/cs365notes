@@ -8,8 +8,8 @@ description: >
 version:          0.1
 gitbook_version:  3.2.3
 
-#url:              'https://cs.uwaterloo.ca/~eblais/cs365/w24/'
-baseurl:          ''
+url:              'https://cs.uwaterloo.ca'
+baseurl:          '/~eblais/cs365'
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
