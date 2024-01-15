@@ -2,7 +2,8 @@
   title: 3. Recursion Theorem
   author: Eric Blais
   layout: post
-  cover: /assets/images/recursion.png
+  date: 2024-01-12
+  cover: assets/images/recursion.png
 ---
 
 Here's a fun puzzle: 
@@ -22,7 +23,8 @@ And we will see that the Recursion Theorem is also a powerful tool in establishi
 ## Building Blocks
 
 The proof of the Recursion Theorem builds on some very simple observations.
-The first is that for every string $$s$$, there is a Turing machine that can add that string to the beginning of it input.
+
+The first simple observation is that for every string $$s$$, there is a Turing machine that can add that string to the beginning of its input.
 
 > **Proposition 1.** 
 > For every string $$s \in \{0,1\}^*$$, there exists a Turing machine $$P_s$$ that on input $$x \in \{0,1\}^*$$  writes the string $$sx$$ on the tape and then accepts.
@@ -30,24 +32,29 @@ The first is that for every string $$s$$, there is a Turing machine that can add
 
 > **Proof.**
 > When $$s = a_1a_2\cdots a_n$$ we can simply let $$P_s$$ be the simple Turing machine that repeatedly moves left and overwrites the $n$ blank symbols to the left of $$x$$ with $$a_n, \ldots, a_1$$ in that order.
+ 
+The machines in the proof of Proposition 1 are particularly simple.
+For example, the machine $$P_{01011}$$ that prepends the string 01011 to the beginning of the input string is defined by this diagram:
+ 
+![Diagram of the Turing machine that prepends 01011 to the input string.](assets/images/prependTM.png)
 
-The second simple observation is that there is a Turing machine that can produce the encoding of all of the $$P_s$$ machines.
+We use the simplicity of these machines to show that there is a single Turing machine that can produce the encoding of all the $$P_s$$ machines.
 
 > **Proposition 2.**
 > There is a Turing machine $$\textsf{FindPrinter}$$ that on input $$s \in \{0,1\}^*$$, replaces $$s$$ with $$\left< P_s \right>$$ on the tape then accepts.
 {: .block-danger}
 
 > **Proof.**
-> The $$P_s$$ machines in the proof of Proposition 1 all have a very simple form: they include one state for each symbol of $$s$$ that ignore the blank symbol on tape, write their symbol, and move left.
-> Given $$s$$ as input, it is straightforward to determine the transition function for $$P_s$$ and to write its encoding on the tape.
+> Given $$s$$ as input, it is straightforward to determine the transition function for the corresponding Turing machine $$P_s$$ as defined above.
+> We can then write its encoding on the tape.
 
-Let us now define the _concatenation_ of two Turing machines $$A$$ and $$B$$ to be the machine that we represent with $$AB$$ that on input $$x$$ first simulates $$A$$ on $$x$$, then simulates $$B$$ on the input left on the tape after $$A$$'s simulation, and finally accepts if and only if $$B$$ accepts.
+The _concatenation_ of two Turing machines $$A$$ and $$B$$ is the machine that we represent with $$AB$$ that on input $$x$$ first simulates $$A$$ on $$x$$, then simulates $$B$$ on the input left on the tape after $$A$$'s simulation, and finally accepts if and only if $$B$$ accepts.
 
 Note that the encoding of the concatenated machine $$AB$$ is _not_ equivalent to the concatenation of the encodings of $$A$$ and $$B$$.
-Nonetheless, our third observation is that there is a Turing machine that, given the encoding of any two Turing machines, can produce the encoding of their concatenation.
+Nonetheless, our third simple observation is that there is a Turing machine that, given the encoding of any two Turing machines, can produce the encoding of their concatenation.
 
 > **Proposition 3.**
-> There is a Turing machine $$\textsf{Concat}$$ that on input $$\left<A\right> \left<B\right>$$ for any two Turing machines $$A$$ and $$B$$, replaces that input with $$\left< AB \right>$$ on the tape then accepts.
+> There is a Turing machine $$\textsf{Concat}$$ that on input $$\left<A\right> \left<B\right>$$ for any two Turing machines $$A$$ and $$B$$, replaces that input with $$\left< AB \right>$$ on the tape and then accepts.
 {: .block-danger}
 
 > **Proof.**
@@ -72,14 +79,15 @@ We're now ready to prove the Recursion Theorem.
 > \left< P_{\left< N \right>} N \right> x
 > $$ 
 >
-> and then halts. 
-> There exists such an $$R$$ because of the simple observations we already established.
+> on the tape and then halts. 
+> There exists such an $$R$$ because of the simple observations we established above:
 > First, we can run $$\textsf{FindPrinter}$$ on $$\left< N \right>$$ to obtain $$\left< P_{\left< N \right>} \right>$$.
 > Then, we can run $$\textsf{Concat}$$ on the input $$\left< P_{\left< N\right>} \right> \left<N\right>$$ to obtain $$\left< P_{\left<N\right>} N \right>$$.
-> Adding the original input $$x$$ to the right of this string gives us the desired output.
+> Keeping the original input $$x$$ to the right of this string gives us the desired output.
 > 
 > Note that the definition of $$R$$ does not depend on $$M$$.
-> With $$R$$ in place, we can define $$Q_M$$ to be the Turing machine
+> 
+> Define $$Q_M$$ to be the Turing machine
 >
 > $$
 > Q_M = P_{\left< RM \right>} RM.
@@ -183,5 +191,5 @@ As we will see in the next lecture, it can be used to prove many other undecidab
 
 ---
 
-_Eric Blais &copy;2023 &mdash; Last edited on Dec. 18, 2023_
+_Eric Blais &copy;2024 &mdash; Last edited on Jan. 14, 2024_
 

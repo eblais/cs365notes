@@ -1,7 +1,9 @@
 ---
-title: 4. Undecidability
-author: Eric Blais
-layout: post
+  title: 4. Undecidability
+  author: Eric Blais
+  layout: post
+  date: 2024-01-12
+  cover: assets/images/undecidability.jpg
 ---
 
 We saw in the last lecture that the language $$A_{TM} = \{ \left< M \right>x : M \mbox{ accepts } x\}$$ is undecidable.
@@ -38,7 +40,7 @@ The proof of the undecidability of $$A_{TM}$$ can easily be modified to show tha
 > By construction, $$M$$ halts on $$x$$ if and only if $$T$$ does not accept $$\left< M \right> x$$.
 > But this contradicts the claim that $$T$$ decides $$\textsf{Halt}_{TM}$$.
 
-And we can also modify the proof to show that determining if a Turing machine accepts _any_ string is also undecidable.
+We can also modify the proof to show that determining if a Turing machine accepts _any_ string is also undecidable.
 Define $$L(M) = \{ x \in \{0,1\}^* : M \mbox{ accepts } x\}$$; recall that $$L(M)$$ denotes the language _recognized_ by $$M$$.
 
 > **Theorem 2.**
@@ -96,7 +98,7 @@ Rice's Theorem immediately implies Theorem 2 because $$P = \{\emptyset\}$$ is a 
 It also implies that we can't decide if the language recognized by a Turing machine includes the empty string, is finite or infinite, contains an even number of strings of length at most 100, is a regular language, etc.
 But note that it does _not_ imply that we can't decide properties of Turing machines themselves; given a description of a Turing machine, we can certainly decide whether it has an even number of states, for example.
 
-(Also, note that Theorems 1 and 2 do not immediately follow from Rice's Theorem because the languages $$A_{TM}$$ and $$\mathsf{Halt}_{TM}$$ are not of the right form.)
+(Also, note that the undecidability of $$A_{TM}$$ and $$\mathsf{Halt}_{TM}$$ do not immediately follow from Rice's Theorem because the languages $$A_{TM}$$ and $$\mathsf{Halt}_{TM}$$ are not of the right form.)
 
 
 ## Reductions
@@ -105,13 +107,13 @@ We have seen two different types of arguments that can be used to prove the unde
 There is a third method: _reduction_ arguments.
 Informally, if we show that being able to decide language $$L$$ implies that we can decide another language that is already known to be undecidable, like $$A_{TM}$$, then this proves that $$L$$ must also be undecidable.
 
-Here is a very simple example of a proof by reduction.
+Here is a simple example of a proof by reduction.
 
 > **Theorem 3.**
 > The language
 > 
 > $$
-> A_{TM}^{\epsilon} = \{ \left< M \right> : M \mbox{ accepts } \varepsilon \}
+> A_{TM}^{\varepsilon} = \{ \left< M \right> : M \mbox{ accepts } \varepsilon \}
 > $$
 > 
 > is undecidable.
@@ -133,7 +135,7 @@ Here's another example that is a bit more interesting.
 The _$$k$$th Busy beaver number_ is the maximum number $$BB_k$$ of steps that a Turing machine with $$k$$ states can complete before halting on a tape that is initially empty.
 (Here the maximum is taken over all Turing machines with $$k$$ states that _do_ halt after a finite number of steps when the input is $$\varepsilon$$.)
 The Busy beaver numbers grow incredibly fast as a function of $$k$$.
-And they are uncomputable.
+And they are uncomputable in the following sense.
 
 > **Theorem 4.**
 > The language
@@ -222,5 +224,5 @@ We can show that this language is unrecognizable using the following general res
 
 ---
 
-_Eric Blais &copy;2023 &mdash; Last edited on Dec. 19, 2023_
+_Eric Blais &copy;2024 &mdash; Last edited on Jan. 14, 2024_
 
