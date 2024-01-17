@@ -59,7 +59,7 @@ Define $$L(M) = \{ x \in \{0,1\}^* : M \mbox{ accepts } x\}$$; recall that $$L(M
 >
 > 1. Obtain its own encoding $$\left< M\right>$$ using the Recursion Theorem.
 > 2. Run $$T$$ on input $$\left< M \right>$$.
-> 3. If $$T$$ accepts, reject; otherwise accept.
+> 3. Accept if $$T$$ accepts; otherwise reject.
 > 
 > By this construction, $$L(M) = \{0,1\}^*$$ when $$T$$ accepts $$\left< M \right>$$ and $$L(M) = \emptyset$$ when $$T$$ rejects.
 > This contradicts the claim that $$T$$ decides $$\textsf{Empty}_{TM}$$.
@@ -224,5 +224,5 @@ We can show that this language is unrecognizable using the following general res
 
 ---
 
-_Eric Blais &copy;2024 &mdash; Last edited on Jan. 14, 2024_
+_Eric Blais &copy;2024 &mdash; Last edited on Jan. 17, 2024_
 
