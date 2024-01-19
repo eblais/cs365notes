@@ -132,16 +132,16 @@ Here is a simple example of a proof by reduction.
 Note that Theorem 3 also follows directly from Rice's Theorem.
 Here's another example that is a bit more interesting.
 
-The _$$k$$th Busy beaver number_ is the maximum number $$BB_k$$ of steps that a Turing machine with $$k$$ states can complete before halting on a tape that is initially empty.
-(Here the maximum is taken over all Turing machines with $$k$$ states that _do_ halt after a finite number of steps when the input is $$\varepsilon$$.)
-The Busy beaver numbers grow incredibly fast as a function of $$k$$.
+The _$$(m,k)$$th Busy beaver number_ is the maximum number $$BB_{m,k}$$ of steps that a Turing machine with $$m$$ states and tape alphabet $$\Gamma_k = \{0,1,\ldots,k,\square\}$$ can complete before halting on a tape that is initially empty.
+(Here the maximum is taken only over the Turing machines that _do_ halt after a finite number of steps when the input is $$\varepsilon$$.)
+The Busy beaver numbers grow incredibly fast as a function of $$m$$ and $$k$$.
 And they are uncomputable in the following sense.
 
 > **Theorem 4.**
 > The language
 > 
 > $$
-> B = \{ \left< k \right> \left< n \right> : BB_k \le n \}
+> B = \{ \left< m \right> \left< k \right> \left< n \right> : BB_{m,k} \le n \}
 > $$
 > 
 > is undecidable.
@@ -150,21 +150,20 @@ And they are uncomputable in the following sense.
 > **Proof.**
 > Assume on the contrary that there is a Turing machine $$T$$ that decides the language $$B$$.
 > 
-> Let us now define a Turing machine $$A$$ that takes input $$\left< M \right> x$$.
-> As a first step, $$A$$ determines the number $$k$$ of states in $$M$$. 
-> (This is easily done from the encoding of $$M$$.)
-> Then by calling $$T$$ with input $$\left< k \right> \left< n \right>$$ for $$n=1,2,3,\ldots$$
-> until $$T$$ accepts, $$A$$ can determine the value of $$BB_k$$.
-> (Note that since there are only finitely many distinct Turing machines with $$k$$ states, the value of $$BB_k$$ is finite and so $$T$$ will accept after a finite number of calls.)
+> Let us now define a Turing machine $$A$$ that takes input $$\left< M \right>$$.
+> As a first step, $$A$$ uses the description $$\left< M \right>$$ to determine the values of $$m$$ and $$k$$ for this particular machine $$M$$.
+> Then by calling $$T$$ with input $$\left< m \right> \left< k \right> \left< n \right>$$ for $$n=1,2,3,\ldots$$
+> until $$T$$ accepts, $$A$$ can determine the value of $$BB_{m,k}$$.
+> (Note that since there are only finitely many distinct Turing machines with $$m$$ states and tape alphabet $$\Gamma_k$$, the value of $$BB_{m,k}$$ is finite and so $$T$$ will accept after a finite number of calls.)
 > 
-> Now $$A$$ can simulate up to $$BB_k$$ steps of computation of $$M$$ on input $$\varepsilon$$.
-> Specifically, it can do that by copying the behaviour of the Universal Turing Machine with one additional twist: a counter that is incremented after each simulation step and that interrupts the simulation when it reaches the value $$BB_k$$.
+> Now $$A$$ can simulate up to $$BB_{m,k}$$ steps of computation of $$M$$ on input $$\varepsilon$$.
+> Specifically, it can do that by copying the behaviour of the Universal Turing Machine with one additional twist: a counter that is incremented after each simulation step and that interrupts the simulation when it reaches the value $$BB_{m,k}$$.
 > If $$M$$ accepts or rejects during the simulation, $$A$$ does the same.
-> Otherwise, at the end of $$BB_k$$ steps of simulation, $$A$$ halts and rejects.
+> Otherwise, at the end of $$BB_{m,k}$$ steps of simulation, $$A$$ halts and rejects.
 > 
 > Then $$A$$ decides the language $$A_{TM}^{\epsilon}$$.
 > That's because if $$M$$ accepts or rejects $$\varepsilon$$, then $$A$$ does the same.
-> And if $$M$$ runs for more than $$BB_k$$ steps, then by definition of the Busy beaver numbers it must run forever, which means that it does not accept $$\varepsilon$$.
+> And if $$M$$ runs for more than $$BB_{m,k}$$ steps, then by definition of the Busy beaver numbers it must run forever, which means that it does not accept $$\varepsilon$$.
 
 
 ## Recognizability
@@ -224,5 +223,5 @@ We can show that this language is unrecognizable using the following general res
 
 ---
 
-_Eric Blais &copy;2024 &mdash; Last edited on Jan. 17, 2024_
+_Eric Blais &copy;2024 &mdash; Last edited on Jan. 19, 2024_
 
