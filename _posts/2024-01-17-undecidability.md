@@ -68,7 +68,7 @@ We can extend this theorem to show that it is impossible to decide _any_ non-tri
 
 
 > **Rice's Theorem.**
-> Let $P$ be a subset of all languages over $$\{0,1\}^n$$ such that
+> Let $P$ be a subset of all languages such that
 > 
 > 1. There exists a Turing machine $$M_1$$ for which $$L(M_1) \in P$$, and
 > 2. There exists a Turing machine $$M_2$$ for which $$L(M_2) \notin P$$.
