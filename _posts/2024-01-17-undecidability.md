@@ -3,7 +3,6 @@
   author: Eric Blais
   layout: post
   date: 2024-01-12
-  cover: assets/images/undecidability.jpg
 ---
 
 We saw in the last lecture that the language $$A_{TM} = \{ \left< M \right>x : M \mbox{ accepts } x\}$$ is undecidable.

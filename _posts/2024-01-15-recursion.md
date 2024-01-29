@@ -3,7 +3,6 @@
   author: Eric Blais
   layout: post
   date: 2024-01-12
-  cover: assets/images/recursion.png
 ---
 
 Here's a fun puzzle: 
