@@ -1,6 +1,7 @@
 ---
 title: 9. Non-Uniform Computation
 author: Eric Blais
+date: 2024-02-01
 layout: post
 ---
 
@@ -21,9 +22,6 @@ fundamental lemma showing that Turing machines can be efficiently simulated with
 > We first observe that any configuration of the machine $$M$$ can be represented using a binary string.
 > Namely, for each of the $$s$$ squares of the tape that $$M$$ might use, we encode two pieces of information using binary strings: the _state_ of the machine is stored by encoding the index of the current state of $$M$$ if the tape head is over the current square, and a special code (say, $$0$$) is encoded in the state instead if the tape head is over a different square.
 > And the _symbol_ on the current square is stored by using the binary encoding of the index of the symbol currently written on that tape square.
-> The encoding of a configuration looks like this:
-> 
-> (...)
 > 
 > By writing the intial configuration of $$M$$ on input $$x$$ and then writing the configurations yielded by this initial configuration one below the other, we obtain a _tableau_ representation of the execution of $$M$$ on input $$x$$.
 > The machine $$M$$ accepts $$x$$ if and only if any of the configurations in this tableau is an accepting configuration.
@@ -36,8 +34,7 @@ fundamental lemma showing that Turing machines can be efficiently simulated with
 > 
 > We then obtain $$C$$ by taking the circuit that generates the tableau of $$M$$ with the input $$x$$ as the only non-fixed inputs to the first configuration, and adding another $$O(s \cdot t)$$ gates to output $$1$$ if and only if any of the configurations in the tableau is accepting.
 
-Lemma 1 can easily be extended to show that circuits can also efficiently simulate multi-tape Turing machines. 
-And since a Turing machine with polynomial time complexity can only use a polynomial number of squares on the tape, we obtain the following important consequence.
+Since a Turing machine with polynomial time complexity can only use a polynomial number of squares on the tape, Lemma 1 implies the following important consequence.
 
 > **Theorem 2.**
 > Every language in $$\mathbf{P}$$ can be computed with a family of polynomial-size circuits.
@@ -53,12 +50,12 @@ However, we can consider a _non-uniform_ variant of Turing machines that can eff
 The notion of non-uniform Turing machines is obtained via the following variant of our usual Turing machine model.
 
 > **Definition.**
-> A _Turing machine with advice_ is a multitape Turing machine that in addition to its usual tapes also has a special _advice tape_ and is defined with a sequence of _advice strings_ $$a_0, a_1, a_2, \ldots$$, one for each $$n \in \mathbb{N}$$.
+> A _Turing machine with advice_ is a Turing machine that in addition to its usual tape also has a special _advice tape_ and is defined with a sequence of _advice strings_ $$a_0, a_1, a_2, \ldots$$, one for each $$n \in \mathbb{N}$$.
 > When running a Turing machine with advice on input $$x \in \{0,1\}^n$$, the machine is initialized with the advice string $$a_n$$ corresponding to the length of $$x$$ on the advice tape.
 {: .block-tip}
 
-The execution of the Turing machine with advice is the same as for standard multitape Turing machines.
-We will be interested in polynomial-time Turing machines with advice.
+The execution of the Turing machine with advice is the same as for standard Turing machines.
+We will be interested in _polynomial-time Turing machines with advice_.
 Since time cost is again just measured in terms of the input string itself (and not the advice string), this means that we can assume without loss of generality that the advice strings all have polynomial length.
 
 > **Definition.**
@@ -117,5 +114,5 @@ From there, we can easily complete the proof of the Cook-Levin theorem that $$\t
 
 ---
 
-_Eric Blais &copy;2023 &mdash; Last edited on Jan. 2, 2024_
+_Eric Blais &copy;2024 &mdash; Last edited on Feb. 2, 2024_
 
