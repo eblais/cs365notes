@@ -80,39 +80,8 @@ The class $$\mathbf{P/poly}$$ exactly captures the set of languages that can be 
 > Therefore, if $$L$$ can be computed by a family of polynomial-size circuits, the machine $$U$$ with advice strings corresponding to the circuits in this family correctly decides $$L$$ in polynomial time, so $$L \in \mathbf{P/poly}$$.
 
 
-## Circuit Satisfiability
-
-Another interesting connection between Boolean circuits and Turing machines is obtained by considering the language
-
-$$
-\textsf{CircuitSAT} = \left\{ \left< C \right> : C \mbox{ is satisfiable}\right\}
-$$
-
-of all encodings of Boolean circuits that evaluate to True on at least one input.
-This language is $$\mathbf{NP}$$-complete.
-
-> **Theorem 4.**
-> The language $$\textsf{CircuitSAT}$$ is $$\mathbf{NP}$$-complete.
-{: .block-danger}
-
-> **Proof.**
-> We have already seen in the proof of Theorem 3 that we can evaluate Boolean circuits efficiently with Turing machines.
-> So there is polynomial-time verifier for $$\textsf{CircuitSAT}$$ that takes the (claimed) satisfying assignment as the certificate and simply simulates the encoded circuit $$C$$ on this input to verify that the circuit indeed evaluates to True.
-> And so $$\textsf{CircuitSAT} \in \mathbf{NP}$$.
-> 
-> Consider now any language $$A \in \mathbf{NP}$$.
-> Let $$V$$ be a polynomial-time verifier for $$A$$.
-> As in the proof of Lemma 1, there is a polynomial-size circuit $$C$$ that can simulate $$V$$ on any input-certificate pair $$(x,c)$$ and evaluates to True if and only if $$V$$ accepts that pair.
-> Furthermore, we can construct this circuit $$C$$ in polynomial time and hardcode the input $$x$$ in to obtain the circuit $$C'$$ that satisfies $$\left< C' \right> \in \textsf{CircuitSAT}$$ if and only if $$x \in A$$.
-> Therefore, the construction gives a polynomial-time reduction from $$A$$ to $$\textsf{CircuitSAT}$$.
-> Since this holds for all $$A \in \mathbf{NP}$$, by definition $$\textsf{CircuitSAT}$$ is $$\mathbf{NP}$$-hard.
-
-The language $$\textsf{CircuitSAT}$$ now gives us an explicit $$\mathbf{NP}$$-complete language.
-From there, we can easily complete the proof of the Cook-Levin theorem that $$\textsf{SAT}$$ is $$\mathbf{NP}$$-complete.
-
-
 
 ---
 
-_Eric Blais &copy;2024 &mdash; Last edited on Feb. 2, 2024_
+_Eric Blais &copy;2024 &mdash; Last edited on Feb. 12, 2024_
 
