@@ -19,7 +19,7 @@ $$
 of all encodings of Boolean circuits that evaluate to True on at least one input.
 We can show directly that this language is $$\mathbf{NP}$$-complete.
 
-> **Theorem 4.**
+> **Theorem.**
 > The language $$\textsf{CircuitSAT}$$ is $$\mathbf{NP}$$-complete.
 {: .block-danger}
 
@@ -117,13 +117,13 @@ $$
 $$
 
 
-> **Theorem 3.**
+> **Theorem.**
 > $$\textsf{3SAT}$$ is $$\mathbf{NP}$$-complete.
 {: .block-danger}
 
 > **Proof.**
 > Looking back at the proof of the Cook-Levin theorem, we see that the polynomial-time reduction already converts general circuits into CNF formulas.
-> The only missing step to modify the reduction so that it shows that $$\textsf{CircuitSAT} \le_{\mathbf{P} \textsf{3SAT}$$ is to convert the resulting CNF formula into one that has width at most 3.
+> The only missing step to modify the reduction so that it shows that $$\textsf{CircuitSAT} \le_{\mathbf{P}} \textsf{3SAT}$$ is to convert the resulting CNF formula into one that has width at most 3.
 > 
 > As it turns out, this final step is easy to accomplish.
 > We can turn any clause $$x_1 \vee x_2 \vee x_3 \vee \cdots \vee x_k$$ of width $$k \ge 3$$ into a collection of clauses of width 3 by adding $$k-3$$ auxiliary variables $$y_1,\ldots,y_{k-3}$$ and taking the set of clauses

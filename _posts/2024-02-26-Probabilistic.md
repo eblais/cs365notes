@@ -23,7 +23,6 @@ In this case, however, the extra tape is a _randomness tape_ that we can imagine
 
 On input $$x$$ of length $$n$$, a probabilistic Turing machine's randomness tape is initialized with a string $$r \in \{0,1\}^{\ell(n)}$$ drawn uniformly at random from the binary strings of length $$\ell(n)$$.
 
-The _time 
 We could alternatively define a probabilistic Turing machine as a single-tape Turing machine that has the ability to flip coins during computational steps to decide between multiple possible transitions that it could follow.
 This alternative definition is equivalent to the one we use; if it's useful, you can picture the probabilistic Turing machine as flipping the coins it plans to use during its computation ahead of time and writing the results on the randomness tape before starting its actual computation.
 
@@ -43,9 +42,8 @@ The main advantage of probabilistic Turing machines over deterministic Turing ma
 > 
 {: .block-tip}
 
-
 The class $$\mathbf{BPP}$$ is the set of all languages that can be $$\frac13$$-decided by polynomial-time probabilistic Turing machines.
-The name of the class stands for $$\mathbf{B}$$ounded-error $$\mathbf{P}$$robabilistic $$\mathbf{P}$$olynomial-time, and in many ways it is the most natural extension of $$\mathbf{P}$$ for randomized computation.
+The name of the class stands for **B**ounded-error **P**robabilistic **P**olynomial-time, and in many ways it is the most natural extension of $$\mathbf{P}$$ for randomized computation.
 
 
 
@@ -163,14 +161,14 @@ $$
 \mathrm{E}[T] 
 = \mathrm{E}\left[\frac1k \sum_{i=1}^k X_i\right] 
 = \frac1k \sum_{i=1}^k \mathrm{E}[X_i]
-= \frac1k \sum_{i=1}^k \Pr[ X_i = 1 ].
+= \frac1k \sum_{i=1}^k \Pr[ X_i = 1 ]
 $$
 is the expected fraction of the variables $$X_i$$ that take the value $$1$$.
 
 We're now ready to complete the proof of our success amplification theorem.
 
 > **Proof.**
-> Let $$A$$ be a polynomial-time probbabilistic Turing machine that $$\frac13$$-decides $$L$$.
+> Let $$A$$ be a polynomial-time probabilistic Turing machine that $$\frac13$$-decides $$L$$.
 > Define $$B$$ to be the algorithm that on an input $$x$$ of length $$n$$ runs $$k = 18 c_0 n^{c_1}$$ copies of $$A$$ on $$x$$ and accepts if and only if more than half of the instances of $$A$$ accept.
 > The algorithm $$B$$ always halts, and it also runs in polynomial time.
 > 
