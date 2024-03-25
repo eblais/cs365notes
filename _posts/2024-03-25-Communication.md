@@ -54,8 +54,6 @@ This corresponds to the maximum number of bits that Alice and Bob exchange befor
 {: .block-tip}
 
 
-## First Examples
-
 Every function $$f \colon \{0,1\}^n \times \{0,1\}^n \to \{0,1\}$$ has communication complexity bounded above by $D^{\rm cc}(f) \le n+1$.
 That's because we can design a simple protocol in which Alice sends Bob her input $x$ using $n$ bits of communication, Bob computes the value of $f(x,y)$ using all of the information he has, and then Bob sends the value $f(x,y)$.
 
@@ -87,27 +85,62 @@ Some functions can be computed with much less communication.
 > So here is a very simple protocol to compute the $\oplus_n$ function: Alice sends a bit corresponding to the parity of its input, then Bob does the same. 
 > The label of the leaf is the parity of the sum of the bits that they sent, and it will always equal $\oplus_n(x,y)$.
 
-For other functions, however, no protocol can do better than the trivial one.
 
-> **Theorem.**
-> The equality function $$\textsf{EQ} \colon \{0,1\}^n \times \{0,1\}^n \to \{0,1\}$$ 
-> has communication complexity $$D^{\rm cc}(\textsf{EQ}) = n+1$$.
+## Fooling Set Method
+
+For other functions, however, no protocol can do better than the trivial one in which Alice sends her entire input to Bob.
+To prove such results, we introduce the _fooling set method_.
+
+> **Definition.**
+> A set $$\mathcal{S} \subseteq \{0,1\}^n \times \{0,1\}^n$$ is a _fooling set_ for $$f \colon \{0,1\}^n \times \{0,1\}^n \to \{0,1\}$$ if
+> 
+> * Every $$(x,y) \in \mathcal{S}$$ satisfies $$f(x,y) = 1$$; and
+> * For every $$(x,y)  \neq (x',y') \in \mathcal{S}$$, we have 
+> 
+> $$
+> f(x,y') = 0 \qquad \mbox{or} \qquad f(x',y) = 0.
+> $$
+{: .block-tip}
+
+Large fooling sets give lower bounds on the deterministic communication complexity of functions.
+
+> **Fooling Set Lemma**
+> If there is a fooling set $$\mathcal{S}$$ of cardinality $$|\mathcal{S}| = m$$ for the function $$f$$, then $$D^{\rm cc}(f) \ge \log m.$$
 {: .block-danger}
 
 > **Proof.**
-> We use a slight variant of the usual adversary argument. 
-> Assume that Alice and Bob have a protocol with cost at most $n$ that computes $$\textsf{EQ}$$. 
-> Consider any leaf labelled 1 in the tree that represents the protocol. 
-> 
-> By the depth of the leaf in this tree, we can conclude one of three things:
-> 
-> 1. Alice sent all $n$ bits, in which case all inputs $y$ to Bob lead to this leaf; or
-> 2. Bob sent all $n$ bits, in which case now all inputs $x$ to Alice lead to this leaf; or
-> 3. Both Alice and Bob sent strictly fewer than $n$ bits, in which case there are at least 2 inputs $x \neq x'$ of Alice and two inputs $y \neq y'$ of Bob that lead to this leaf.
-> 
-> In all three cases, we obtain a contradiction on the correctness of the protocol since there is a pair of distinct inputs $x \neq y$ that leads to this leaf.
+> Assume for contradiction that there is a protocol of depth $$d < \log m$$ that computes $$f$$.
+> Then the tree that represents the protocol has at most $$2^d < m$$ leaves.
+> So by the pigeonhole principle, there must exist two distinct elements $$(x,y) \neq (x',y') \in \mathcal{S}$$ that both end up in the same leaf of this protocol tree.
+> Then the inputs $$(x,y')$$ and $$(x',y)$$ also must lead to the same leaf of the protocol because Alice and Bob follow the same path when Alice has either $$x$$ or $$x'$$ and Bob has either $$y$$ or $$y'$$.
+> But then there is no label that we can assign to that leaf so that it is consistent with all four of those inputs, so we contradict the claim that the protocol computes $$f$$.
 
-There are many other functions with large communication complexity, and many extensions of the argument above that gives general methods for proving communication complexity lower bounds. 
+We can use the Fooling Set Lemma to obtain a simple proof that $n$ bits of communication are required to compute the equality function.
+
+> **Theorem.**
+> The equality function $$\textsf{EQ} \colon \{0,1\}^n \times \{0,1\}^n \to \{0,1\}$$ 
+> has communication complexity $$D^{\rm cc}(\textsf{EQ}) \ge n$$.
+{: .block-danger}
+
+> **Proof.**
+> Consider the set 
+>
+> $$
+> \mathcal{S} = \Big\{ (x,x) : x \in \{0,1\}^*\Big\}.
+> $$
+> 
+> The set $$\mathcal{S}$$ is a fooling set because for any two distinct strings $$x \neq x' \in \{0,1\}^n$$, we have $$\textsf{EQ}(x,x) = \textsf{EQ}(x',x') = 1$$ but $$\textsf{EQ}(x,x') = \textsf{EQ}(x',x) = 0$$.
+> So by the Fooling Set lemma,
+> 
+> $$
+> D^{\rm cc}(\textsf{EQ}) \ge \log |\mathcal{S}| = \log(2^n) = n.
+> $$
+
+We can obtain the optimal bound $$D^{\rm cc}(\textsf{EQ}) = n+1$$ with a simple additional observation. 
+The Fooling Set Lemma is a bit stronger than what we have used.
+Namely, it shows that the number of leaves _labelled 1_ in any protocol tree that computes $$f$$ must be at least $$|\mathcal{S}|$$. 
+Since we must have at least one leaf labelled with 0 to compute the same function, every protocol tree has at least $$2^n + 1$$ leaves, which means that it must have depth $$d \ge \log(2^n + 1)$$ that is strictly greater than $$n$$.
+
 
 
 ## Application: Palindromes
